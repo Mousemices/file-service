@@ -21,8 +21,10 @@ class UpdateExcelRequest extends FormRequest
      */
     public function rules(): array
     {
+        // XLS uses the standard binary format,
+        // While XLSX applies the updated version that is based on the format of XML
         return [
-            'excel_file' => 'required|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            'excel_file' => 'required|file|mimes:xls,xlsx,xml'
         ];
     }
 }

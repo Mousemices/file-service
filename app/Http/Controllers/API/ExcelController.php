@@ -4,8 +4,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateExcelRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Exception;
@@ -22,9 +24,9 @@ class ExcelController extends Controller
     /**
      * @throws Exception
      */
-    public function update(Request $request)
+    public function update(UpdateExcelRequest $updateExcelRequest)
     {
-        $excelFile = $request->file('excel_file');
+        $excelFile = $updateExcelRequest->file('excel_file');
 
         $originalName = $excelFile->getClientOriginalName();
 
